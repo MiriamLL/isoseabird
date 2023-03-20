@@ -4,21 +4,16 @@
 \alias{adapt_colors}
 \title{A function to change the color of the ellipses in ggplot}
 \usage{
-adapt_colors(
-  SIA_plot = SIA_plot,
-  column_group = column_group,
-  color1 = color1,
-  color2 = color2
-)
+adapt_colors(SIA_plot = SIA_plot, color1 = color1, color2 = color2)
 }
 \arguments{
 \item{SIA_plot}{a ggplot (will show as a list of 9)}
 
-\item{column_group}{the name of the column group}
-
 \item{color1}{the color for group 1}
 
 \item{color2}{the color for group 2}
+
+\item{column_group}{the name of the column group}
 }
 \value{
 a ggplot with ellipses in different colors
