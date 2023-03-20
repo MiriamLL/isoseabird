@@ -28,10 +28,10 @@ ggplot_ellipse<-function(SIA_samples=SIA_samples,
 
     ggplot2::stat_ellipse(
       ggplot2::aes(group = column_group,color = column_group),
-      level = 0.95,type = "norm",size=0.6)+
+      level = 0.95,type = "norm",size=0.6,linetype = 1)+
 
     ggplot2::stat_ellipse(
       ggplot2::aes(group = column_group,color = column_group),
-      level = 0.50,type = "t",size=0.6)
+      level = 0.50,size=0.6,linetype = 2)
   return(SIA_plot)
 }
