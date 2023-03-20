@@ -24,14 +24,14 @@ ggplot_ellipse<-function(SIA_samples=SIA_samples,
                             ggplot2::aes(x=column_C,
                                          y=column_N))+
     ggplot2::geom_point(
-      ggplot2::aes(color=column_group),size=1.5,alpha=0.5)+
+      ggplot2::aes(color=column_group),size=1,alpha=0.5)+
 
     ggplot2::stat_ellipse(
       ggplot2::aes(group = column_group,color = column_group),
-      level = 0.95,type = "norm",size=0.8)+
+      level = 0.95,type = "norm",size=0.6)+
 
     ggplot2::stat_ellipse(
       ggplot2::aes(group = column_group,color = column_group),
-      level = 0.50,type = "norm",size=0.8)
+      level = 0.50,type = "t",size=0.6)
   return(SIA_plot)
 }
