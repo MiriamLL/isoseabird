@@ -18,28 +18,21 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-# isoseabird
 A package to analyse isotopic niche overlaps in seabirds
 
 It provides data and uses functions from other packages to create a workflow. Please see references to refer to the packages.
-
-# under construction
-
-Add diagram
-Check permutations
-
 
 # Intro
 
 This package contains:
 
-Data from stable isotopes from red-footed and masked boobies from Isla Clarion
+- Data from stable isotopes from red-footed and masked boobies from Isla Clarion
 
-Eleven functions to organize your data and to calculate Mean distance to centroid and Euclidian distance, adapted from Turner et al. 2010
+- Eleven functions to organize your data and to calculate Mean distance to centroid and Euclidian distance, adapted from Turner et al. 2010
 
-Four functions to organize, convert objects and calculate proportion of overlap using the package SIBER
+- Four functions to organize, convert objects and calculate proportion of overlap using the package SIBER
 
-Six functions to plot ellipses using ggplot and to adapt the theme
+- Six functions to plot ellipses using ggplot and to adapt the theme
 
 ## Install package
 
@@ -56,7 +49,7 @@ library('isoseabird')
 
 # Data
 
-Contains C and N isoopic blood data from red-footed and masked boobies breeding at Clarion Island
+Contains C and N isotopic blood data from red-footed and masked boobies breeding at Clarion Island
 
 ```{r, eval=FALSE}
 head(Sula_data)
@@ -69,11 +62,11 @@ Sula_data<-Sula_data
 
 # 1. Turner
 
-Contains functions from Turner et al 2010
-A general hypothesis-testing framework for stable isotope ratios in ecological studies
+Contains functions from Turner et al 2010   
+A general hypothesis-testing framework for stable isotope ratios in ecological studies  
 Ecology 91(8):2227-33
 
-Please refer to [Turner et al. 2010](https://esapubs.org/archive/ecol/E091/157/)
+Please refer to [Turner et al. 2010](https://esapubs.org/archive/ecol/E091/157/)  
 For details on the script go to: [R Files](https://esapubs.org/archive/ecol/E091/157/suppl-1.htm)
 
 ## 1.1. organize_for_Turner
@@ -185,8 +178,7 @@ SIA_hotellings
 
 Creates work flow to use the package SIBER to calculate ellipses overlaps.
 
-Refer to the paper: [Jackson et al. 2011](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)
-  
+Refer to the paper: [Jackson et al. 2011](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)  
 Check for updates on: [SIBER - last update 2023](https://cran.r-project.org/web/packages/SIBER/vignettes/Introduction-to-SIBER.html)
 
 ## 2.1. organize_for_SIBER
@@ -202,7 +194,7 @@ SIBER_SIA<-organize_for_SIBER(SIA_samples=Sula_data,
 
 ```{r}
 SIBER_object<-convert_object(SIBER_SIA=SIBER_SIA)
-SIBER_object
+str(SIBER_object)
 ```
 
 ```{r}
@@ -253,7 +245,7 @@ Sula_data<-Sula_data
 
 ## 3.1. ggplot_ellipses
 
-```{r}
+```{r, fig.height=2}
 SIA_plot<-ggplot_ellipse(SIA_samples<-Sula_data,column_C<-'Carbon',column_N<-'Nitrogeno',
                          column_group<-'Species')
 SIA_plot
@@ -262,7 +254,7 @@ SIA_plot
 
 ## 3.2. adapt_axis
 
-```{r}
+```{r, fig.height=2}
 SIA_plot_axis<-adapt_axis(SIA_plot=SIA_plot,
                             C_breaks=c(-20,-19,-18,-17,-16,-15,-14),
                             C_limits=c(-20,-14),
@@ -272,22 +264,16 @@ SIA_plot_axis
 ```
 
 
-## 3.3. check_colors
+## 3.3. adapt_theme
 
 ```{r, fig.height=2}
-check_colors(color1='#233d4d',color2='#2a9d8f',color3='#e9c46a',color4='#e76f51')
-```
-
-## 3.4. adapt_theme
-
-```{r}
 SIA_plot_theme<-adapt_theme(SIA_plot=SIA_plot_axis)
 SIA_plot_theme
 ```
 
-## 3.5. adapt_legend
+## 3.4. adapt_legend
 
-```{r}
+```{r, fig.height=2}
 SIA_plot_legend<-adapt_legend(SIA_plot=SIA_plot_theme,
                        xlabel_adjust=-19.9,
                        ylabel_adjust=17.9,
@@ -298,9 +284,9 @@ SIA_plot_legend<-adapt_legend(SIA_plot=SIA_plot_theme,
 SIA_plot_legend
 ```
 
-## 3.6. adapt_colors
+## 3.5. adapt_colors
 
-```{r}
+```{r, fig.height=5}
 SIA_plot_colors<-adapt_colors(SIA_plot=SIA_plot_legend,
                               color1='#233d4d',
                               color2='#2a9d8f',
@@ -347,9 +333,9 @@ SIA_plot_colors
 ResultsFolder<-here::here("3Results")
 SIA_plot_colors
 ggsave("Fig2.jpg",
-       path = ResultsFolder, #tambien la pueden escribir aqui
+       path = ResultsFolder,
        width = 10, height = 10, 
-       units = "in") #puede ser centimetros
+       units = "in") 
 ```
 
 
@@ -358,9 +344,9 @@ ggsave("Fig2.jpg",
 
 [Hammerschlag-Peyer et al. 2011](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0027104)
 
-[Turner et al. 2010](https://esapubs.org/archive/ecol/E091/157/)
+[Turner et al. 2010](https://esapubs.org/archive/ecol/E091/157/)  
 [R Files](https://esapubs.org/archive/ecol/E091/157/suppl-1.htm)
 
-[Jackson et al. 2011](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)
-[SIBER - last update 2023](https://cran.r-project.org/web/packages/SIBER/vignettes/Introduction-to-SIBER.html)
+[Jackson et al. 2011](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)  
+[SIBER - last update 2023](https://cran.r-project.org/web/packages/SIBER/vignettes/Introduction-to-SIBER.html)  
 [SIA in ggplot2](https://cran.r-project.org/web/packages/SIBER/vignettes/Plot-SIA-ggplot2.html)
